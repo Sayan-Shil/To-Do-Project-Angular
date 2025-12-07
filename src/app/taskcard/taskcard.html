@@ -1,0 +1,55 @@
+<div
+  class="border-2 border-white shadow-[inset_0_0_15px_rgba(0,0,0,0.15)] rounded-lg w-full h-14 p-4 flex"
+  (click)="onCardClick()"
+  [ngClass]="{
+    'bg-gray-200': task?.isCompleted,
+    'bg-gray-100 hover:border-blue-400 hover:scale-102 transition-all duration-200  ':
+      !task?.isCompleted
+  }"
+>
+  <div class="flex items-center">
+    <Button
+      (click)="toggle($event)"
+      class="text-[8px] font-semibold text-white px-0.5 py-0.5 w-5 h-5 rounded-sm cursor-pointer"
+      [ngClass]="{
+        'bg-blue-500': task?.isCompleted,
+        'outline-2 outline-gray-300 ': !task?.isCompleted
+      }"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M5 13l4 4L19 7"
+          stroke="#e3e3e3"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </Button>
+
+    <div class="flex flex-col ml-2 overflow-y-auto">
+      <h3
+        class="text-sm font-semibold"
+        [ngClass]="{
+          'line-through text-gray-400': task.isCompleted
+        }"
+      >
+        {{ task.title }}
+      </h3>
+      <p
+        class="text-xs text-gray-500 font-normal"
+        [ngClass]="{
+          'line-through text-gray-200 ': task.isCompleted
+        }"
+      >
+        {{ task.description }}
+      </p>
+    </div>
+  </div>
+</div>
